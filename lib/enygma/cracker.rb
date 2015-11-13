@@ -18,14 +18,14 @@ module Enygma
 			offset_characters_array = @offset.split('')
 			offset_characters_array.rotate!((@encrypted_text.length % 4) * -1)
 
-			rotation_array = get_rotation_array(cypher_last_4_characters_array, plain_last_4_characters_array)
+			rotation_array = get_rotation_array(cypher_last_4_characters_array, plain_last_4_characters_array, offset_characters_array)
 			reverse_rotate_cypher(character_array, rotation_array)
 			write_crypt_to_file(@filename)
 			show_confirmation_message
 
 			# TODO Trying to get the encryption key here
 			rotation = get_key(plain_last_4_characters_array, cypher_last_4_characters_array, offset_characters_array)
-			
+			p @key_arr
 		end
 
 		# TODO Writing a method to return the rotation values [A, B, C, D]
@@ -41,13 +41,18 @@ module Enygma
 			r_arr
 		end
 
-		def get_rotation_array(cypher_array, plain_array)
+		def get_rotation_array(cypher_array, plain_array, offset_array)
 			difference = []
+			@key_arr = []
 			4.times do |i|
 				diff = Enygma::CHARACTER_MAP.index(cypher_array[i]) - Enygma::CHARACTER_MAP.index(plain_array[i])
+				
 				difference << (diff + Enygma::CHARACTER_MAP.length) % Enygma::CHARACTER_MAP.length
 			end
 			difference.rotate!((@encrypted_text.length % 4) * -1)
+			4.times do |i|
+				@key_arr[i] = difference[i] - offset_array[i].to_i
+			end
 		end
 
 		def get_offset(date)
