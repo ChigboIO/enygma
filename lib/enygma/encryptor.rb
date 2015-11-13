@@ -3,26 +3,32 @@ module Enygma
 	class Encryptor
 		attr_reader :cypher_filename, :encryption_key, :encryption_date, :encrypted
 		def initialize(filename)
+			@filename = filename
 			@encryption_key =  rand(10 ** 5).to_s.rjust(5,'0')
 			@encryption_date = nil
 			@offset = get_offset
 			@encrypted = ""
 
-			encrypt(filename)
+			# encrypt(@filename)
 		end
-		def encrypt(filename)
-			file = File.open(filename, 'r')
+		def encrypt()
+			file = File.open(@filename, 'r')
 			character_array = file.read.split('')
 
 			character_array.each_slice(4) do |batch|
 				encrypt_batch(batch)
 			end
-			write_crypt_to_file(filename)
+			write_crypt_to_file(@filename)
+			show_confirmation_message()
+		end
+
+		def show_confirmation_message
+			puts "created #{cypher_filename} with key #{encryption_key} and date #{encryption_date}"
 		end
 
 		def write_crypt_to_file(filename)
 			name_split_array = filename.split('.')
-			@cypher_filename = "encrypted.txt" #name_split_array.insert(2, 'encrypted').join('.')
+			@cypher_filename = 'encrypted.txt' # name_split_array.insert(2, 'encrypted').join('.') # filename.encrypted.txt
 			File.open(@cypher_filename, "w").write(@encrypted)
 		end
 

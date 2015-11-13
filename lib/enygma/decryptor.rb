@@ -1,14 +1,16 @@
 require_relative 'character_mapper'
+
 module Enygma
 	class Decryptor
 		attr_reader :plain_filename, :encryption_key, :encryption_date, :decrypted
 		def initialize(filename, encryption_key, encryption_date)
+			@filename = filename
 			@encryption_key =  encryption_key
 			@encryption_date = encryption_date
 			@offset = get_offset(@encryption_date)
 			@decrypted = ""
 
-			decrypt(filename)
+			#decrypt(@filename)
 		end
 
 		def get_offset(date)
@@ -17,14 +19,20 @@ module Enygma
 			return (date_squared % 10000).to_s
 		end
 
-		def decrypt(filename)
-			file = File.open(filename, 'r')
+		def decrypt
+			
+			file = File.open(@filename, 'r')
 			character_array = file.read.split('')
 
 			character_array.each_slice(4) do |batch|
 				decrypt_batch(batch)
 			end
-			write_crypt_to_file(filename)
+			write_crypt_to_file(@filename)
+			show_confirmation_message
+		end
+
+		def show_confirmation_message
+			puts "created #{plain_filename} with key #{encryption_key} and date #{encryption_date}"
 		end
 
 		def decrypt_batch(batch)
@@ -39,7 +47,8 @@ module Enygma
 
 		def write_crypt_to_file(filename)
 			name_split_array = filename.split('.')
-			@plain_filename = "decrypted.txt" #name_split_array.delete('encrypted').join('.')
+			# name_split_array[1] = 'decrypted'
+			@plain_filename = "decrypted.txt" # name_split_array.join('.') -> filename.decrypted.txt
 			File.open(@plain_filename, "w").write(@decrypted)
 		end
 
