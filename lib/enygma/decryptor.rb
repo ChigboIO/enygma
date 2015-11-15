@@ -26,7 +26,7 @@ module Enygma
 					decrypt_batch(batch)
 				end
 
-				output_file = Filer.write(@plain_filename, @decrypted, @cypher_filename, "encrypted")
+				output_file = Filer.write(@plain_filename, @decrypted, @cypher_filename, "decrypted")
 				show_confirmation_message(output_file, @encryption_key, @encryption_date)
 			rescue
 				puts "Could not open the file you supplied. Make sure you are correctly typing the correct path"
