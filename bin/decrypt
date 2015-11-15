@@ -15,5 +15,9 @@ elsif ARGV.length == 4 && File.file?(ARGV[1])
 	puts "The output file path cannot be created, or file already exist"
 	Enygma::Help.decrypt
 else
-	Enygma::Decryptor.new(ARGV[0], ARGV[2], ARGV[3], ARGV[1]).decrypt
+	if ARGV.length == 4
+		Enygma::Decryptor.new(ARGV[0], ARGV[2], ARGV[3], ARGV[1]).decrypt
+	else
+		Enygma::Decryptor.new(ARGV[0], ARGV[1], ARGV[2]).decrypt
+	end
 end
