@@ -6,14 +6,14 @@ require 'enygma/helpers/help'
 if ARGV[0] && (ARGV[0] == 'help' || ARGV[0] == '--help' || ARGV[0] == '-h')
 	Enygma::Help.encrypt
 elsif ARGV.length < 1 || ARGV.length > 2
-	puts "Incorrect number of argument."
-	Enygma::Help.encrypt
+	puts "Incorrect number of argument. Run with --help for explanation"
+	#Enygma::Help.encrypt
 elsif !File.file?(ARGV[0])
-	puts "The input file path does not exist"
-	Enygma::Help.encrypt
+	puts "The input file path does not exist. Run with --help for explanation"
+	#Enygma::Help.encrypt
 elsif ARGV[1] && File.file?(ARGV[1])
-	puts "The output file path cannot be created, or file already exist"
-	Enygma::Help.encrypt
+	puts "The output file path cannot be created, or file already exist. Run with --help for explanation"
+	#Enygma::Help.encrypt
 else
   Enygma::Encryptor.new(ARGV[0], ARGV[1]).encrypt
 end
