@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'enygma/decryptor'
+require 'enygma/helpers/help'
 
 if ARGV[0] && ARGV[0] == 'help'
 	Enygma::Help.decrypt
