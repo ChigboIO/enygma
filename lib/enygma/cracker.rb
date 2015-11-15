@@ -2,6 +2,7 @@ require_relative 'mixins/character_mapper'
 require_relative 'helpers/offset'
 require_relative 'helpers/filer'
 require_relative 'helpers/key_gen'
+require_relative 'decryptor'
 
 module Enygma
 	class Cracker
@@ -27,7 +28,7 @@ module Enygma
 			diff_array = get_difference_array(cypher_last_4_characters, plain_last_4_characters, offset_characters)
 			key = KeyGen.get_key(diff_array)
 
-			Enygma::Decryptor.new(@cypher_filename, key, @encryption_date, @plain_filename).decrypt
+			Decryptor.new(@cypher_filename, key, @encryption_date, @plain_filename).decrypt
 		end
 
 		def get_difference_array(cypher_array, plain_array, offset_array)
