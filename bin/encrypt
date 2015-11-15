@@ -3,7 +3,7 @@
 require 'enygma/encryptor'
 require 'enygma/helpers/help'
 
-if ARGV[0] && ARGV[0] == 'help'
+if ARGV[0] && (ARGV[0] == 'help' || ARGV[0] == '--help' || ARGV[0] == '-h')
 	Enygma::Help.encrypt
 elsif ARGV.length < 1 || ARGV.length > 2
 	puts "Incorrect number of argument."
