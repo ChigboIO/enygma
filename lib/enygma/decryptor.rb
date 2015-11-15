@@ -1,36 +1,33 @@
-require_relative 'character_mapper'
-
+require_relative 'mixins/character_mapper'
+require_relative 'helpers/offset'
+require_relative 'helpers/filer'
+require_relative 'helpers/rotator'
+require_relative 'mixins/confirmation'
 module Enygma
 	class Decryptor
+		include Confirmation
 		#attr_reader :plain_filename, :encryption_key, :encryption_date, :decrypted
-		def initialize(cypher_filename, plain_filename, encryption_key, encryption_date)
+		def initialize(cypher_filename, encryption_key, encryption_date, plain_filename = nil)
 			@cypher_filename = cypher_filename
 			@plain_filename = plain_filename
 			@encryption_key =  encryption_key
 			@encryption_date = encryption_date
-			@offset = get_offset
+			@offset = Offset.get_offset(@encryption_date)
 			@decrypted = ""
 
 			#decrypt(@filename)
 		end
 
-		def get_offset
-			date_squared = @encryption_date.to_i ** 2
-
-			return (date_squared % 10000).to_s
-		end
-
 		def decrypt
 			begin
-				cypher_text = File.open(@cypher_filename, 'r').read
-				cypher_characters = cypher_text.split('')
+				cypher_characters = Filer.read(@cypher_filename)
 
 				cypher_characters.each_slice(4) do |batch|
 					decrypt_batch(batch)
 				end
 
-				write_crypt_to_file
-				show_confirmation_message
+				output_file = Filer.write(@plain_filename, @decrypted, @cypher_filename, "encrypted")
+				show_confirmation_message(output_file, @encryption_key, @encryption_date)
 			rescue
 				puts "Could not open the file you supplied. Make sure you are correctly typing the correct path"
 			end
@@ -39,32 +36,13 @@ module Enygma
 		def decrypt_batch(batch)
 			key_characters = @encryption_key.split('')
 			offset_characters = @offset.split('')
-			
+
 			batch.each_with_index do |value, index|
-				new_index = get_new_index(key_characters[index], key_characters[index + 1],
-					offset_characters[index], batch[index])
+				new_index = Rotator.rotate(key_characters[index], key_characters[index + 1],
+					offset_characters[index], batch[index], :-)
 
 				@decrypted += Enygma::CHARACTER_MAP[new_index]
 			end
-		end
-
-		def get_new_index(key_char1, key_char2, offset_character, character)
-			character_index = Enygma::CHARACTER_MAP.index(character)
-			total_shift = (key_char1 + key_char2).to_i + offset_character.to_i
-			new_character_index = (character_index - total_shift) % Enygma::CHARACTER_MAP.size
-
-			return new_character_index
-		end
-
-		def write_crypt_to_file
-			# name_split_array = @plain_filename.split('.')
-			# name_split_array[1] = 'decrypted'
-			#@plain_filename = "decrypted.txt" # name_split_array.join('.') -> filename.decrypted.txt
-			File.open(@plain_filename, "w").write(@decrypted)
-		end
-
-		def show_confirmation_message
-			puts "created #{@plain_filename} with date #{@encryption_date}"
 		end
 
 	end
