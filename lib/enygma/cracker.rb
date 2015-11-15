@@ -1,5 +1,6 @@
 require_relative 'mixins/character_mapper'
 require_relative 'helpers/offset'
+require_relative 'helpers/filer'
 require_relative 'helpers/key_gen'
 
 module Enygma
