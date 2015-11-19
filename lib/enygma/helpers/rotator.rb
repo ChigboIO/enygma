@@ -1,3 +1,5 @@
+require_relative "../mixins/character_mapper"
+
 module Enygma
   class Rotator
 
