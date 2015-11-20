@@ -77,12 +77,31 @@ describe Enygma::Encryptor do
     context "when the #encrypt method is called" do
       context "when the output filename is not given" do
 	      subject do
-	        Enygma::Encryptor.new("t.txt")
+	        Enygma::Encryptor.new("default.txt")
 	      end
 
         it "should generate the cypher_filename from the source filename" do
           subject.encrypt
-          expect(subject.cypher_filename).to eql("t.encrypted.txt")
+          expect(subject.cypher_filename).to eql("default.encrypted.txt")
+          File.delete("default.encrypted.txt")
+        end
+
+        it "should create a file with name 'default.encrypted.txt'" do
+          subject.encrypt
+          expect(File.exist?("default.encrypted.txt")).to be_truthy
+          File.delete("default.encrypted.txt")
+        end
+	    end
+
+      context "when the output filename is given" do
+	      subject do
+	        Enygma::Encryptor.new("default.txt", "enc.txt")
+	      end
+
+        it "should create a file with name 'enc.txt'" do
+          subject.encrypt
+          expect(File.exist?("enc.txt")).to be_truthy
+          File.delete("enc.txt")
         end
 	    end
 

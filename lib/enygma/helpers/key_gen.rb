@@ -1,6 +1,5 @@
 module Enygma
   class KeyGen
-
 		def self.get_key(key_array)
 			tracker = []
 			key_array.each_with_index do |value, index|

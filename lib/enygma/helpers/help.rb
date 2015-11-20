@@ -1,6 +1,5 @@
 module Enygma
 	class Help
-
 		def self.encrypt
 			puts "\nTo encrypt a file"
 			puts "\nUsage:"

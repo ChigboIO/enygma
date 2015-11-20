@@ -9,6 +9,14 @@ describe Enygma do
           Enygma::Filer.write("file1.txt", "some content")
         end
 
+        before(:each) do
+          subject
+        end
+        #
+        # after(:each) do
+        #   File.delete("file1.txt")
+        # end
+
         it "should return the first argument" do
           expect(subject).to eql("file1.txt")
         end
@@ -16,10 +24,10 @@ describe Enygma do
         it "should create a file with filename 'file.txt'" do
           expect(File.exist?("file1.txt")).to be_truthy
         end
-        #
-        # it "and the file should have content 'some content'" do
-        #   expect(File.open("file1.txt", "r").read).to eql("some content")
-        # end
+
+        it "and the file should have content 'some content'" do
+          expect(File.open("file1.txt", "r").read).to eql("some content")
+        end
 
       end
 
@@ -30,6 +38,10 @@ describe Enygma do
             Enygma::Filer.write(nil, "some content", "file2.txt", "encrypted")
           end
 
+          before(:each) do
+            subject
+          end
+
           it "should combine the source filename and the action" do
             expect(subject).to eql("file2.encrypted.txt")
           end
@@ -37,10 +49,10 @@ describe Enygma do
           it "should create a file with filename 'file2.txt'" do
             expect(File.exist?("file2.encrypted.txt")).to be_truthy
           end
-          #
-          # it "should have content 'some content'" do
-          #   expect(File.open("file2.encrypted.txt", "r").read).to eql("some content")
-          # end
+
+          it "should have content 'some content'" do
+            expect(File.open("file2.encrypted.txt", "r").read).to eql("some content")
+          end
 
         end
         context "when filename contains 'encrypted'" do

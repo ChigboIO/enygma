@@ -77,13 +77,20 @@ describe Enygma::Decryptor do
     context "when the #decrypt method is called" do
       context "when the output filename is not given" do
         subject do
-          Enygma::Decryptor.new("text.txt", "12345", "231190")
+          Enygma::Decryptor.new("default_enc.txt", "57999", "201115")
         end
-        #
-        # it "should generate the cypher_filename from the source filename" do
-        #   subject.encrypt
-        #   expect (subject.cypher_filename).to eql("text.txt")
-        # end
+
+        it "should generate the plain filename from the cypher filename" do
+          subject.decrypt
+          expect(subject.plain_filename).to eql("default_enc.decrypted.txt")
+          File.delete("default_enc.decrypted.txt")
+        end
+
+        it "should generate the plain file content of 'some default content'" do
+          subject.decrypt
+          expect(File.open("default_enc.decrypted.txt", 'r').read).to eql("some default content")
+          #File.delete("default_enc.decrypted.txt")
+        end
       end
 
     end
