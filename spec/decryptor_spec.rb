@@ -3,7 +3,6 @@ require "spec_helper"
 describe Enygma::Decryptor do
   describe "#new" do
     context "when instantiating the Decryptor class" do
-
       context "when output file name is provided" do
         subject do
           Enygma::Decryptor.new("encrypted.txt", "12345", "231190", "plain.txt")
@@ -32,7 +31,6 @@ describe Enygma::Decryptor do
         it "should set the encryption date to be '231190'" do
           expect(subject.encryption_date).to eql("231190")
         end
-
       end
 
       context "when THREE parameters are given" do
@@ -47,10 +45,6 @@ describe Enygma::Decryptor do
         it "should be an instance of Decryptor class" do
           expect(subject).to be_an_instance_of(Enygma::Decryptor)
         end
-        #
-        # it "should set the cypher filename to 'encrypted.txt'" do
-        #   expect(subject.cypher_filename).to eql("encrypted.txt")
-        # end
 
         it "should set the plain filename to nil" do
           expect(subject.plain_filename).to be_nil
@@ -67,7 +61,8 @@ describe Enygma::Decryptor do
       context "when FIVE arguments are provided" do
 
         it "should raise ArgumentError" do
-          expect { Enygma::Encryptor.new("arg1", "arg2", "arg3") }.to raise_error(ArgumentError)
+          expect { Enygma::Encryptor.new("arg1", "arg2", "arg3") }.
+              to raise_error(ArgumentError)
         end
       end
     end
@@ -88,11 +83,10 @@ describe Enygma::Decryptor do
 
         it "should generate the plain file content of 'some default content'" do
           subject.decrypt
-          expect(File.open("default_enc.decrypted.txt", 'r').read).to eql("some default content")
-          #File.delete("default_enc.decrypted.txt")
+          expect(File.open("default_enc.decrypted.txt", 'r').read).
+              to eql("some default content")
         end
       end
-
     end
   end
 end

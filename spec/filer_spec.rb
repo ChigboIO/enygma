@@ -3,7 +3,6 @@ require "spec_helper"
 describe Enygma do
   describe Enygma::Filer do
     describe ".write" do
-
       context "when first parameter is not nil" do
         subject do
           Enygma::Filer.write("file1.txt", "some content")
@@ -12,11 +11,7 @@ describe Enygma do
         before(:each) do
           subject
         end
-        #
-        # after(:each) do
-        #   File.delete("file1.txt")
-        # end
-
+        
         it "should return the first argument" do
           expect(subject).to eql("file1.txt")
         end
@@ -28,12 +23,10 @@ describe Enygma do
         it "and the file should have content 'some content'" do
           expect(File.open("file1.txt", "r").read).to eql("some content")
         end
-
       end
 
       context "when 'destination filename' is nil" do
         context "when filename does not contain 'encrypted'" do
-
           subject do
             Enygma::Filer.write(nil, "some content", "file2.txt", "encrypted")
           end
@@ -51,20 +44,22 @@ describe Enygma do
           end
 
           it "should have content 'some content'" do
-            expect(File.open("file2.encrypted.txt", "r").read).to eql("some content")
+            expect(File.open("file2.encrypted.txt", "r").read).
+                to eql("some content")
           end
-
         end
         context "when filename contains 'encrypted'" do
 
           it "should replace the 'encrypted' with the 'decrypted'" do
-            expect(Enygma::Filer.write(nil, "some content", "file3.encrypted.txt", "decrypted"))
-              .to eql("file3.decrypted.txt")
+            expect(Enygma::Filer.write(nil, "some content",
+                                       "file3.encrypted.txt", "decrypted"
+            )).to eql("file3.decrypted.txt")
           end
 
           it "should replace the 'encrypted' with the 'cracked'" do
-            expect(Enygma::Filer.write(nil, "some content", "file3.encrypted.txt", "cracked"))
-              .to eql("file3.cracked.txt")
+            expect(Enygma::Filer.write(nil, "some content",
+                                       "file3.encrypted.txt", "cracked"
+            )).to eql("file3.cracked.txt")
           end
         end
       end
