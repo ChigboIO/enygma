@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = "This gem uses Enigma algorithm to
  encrypt and decrypt a file. It also provides you
  with the ability to crack a file that was encrypted with 'enygma'"
-  spec.homepage      = "" # "Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/andela-echigbo/enygma"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.executables   = %w(encrypt decrypt crack)
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.10.6"
+  spec.add_development_dependency 'bundler', '~> 1.10', '>= 1.10.6'
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency 'rspec', '~> 0'
   spec.add_development_dependency "coveralls", "0.8.2"
 end
