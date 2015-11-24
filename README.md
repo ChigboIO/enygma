@@ -1,4 +1,4 @@
-# Enygma [![Coverage Status](https://coveralls.io/repos/andela-echigbo/enygma/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-echigbo/enygma?branch=master) [![Circle CI](https://circleci.com/gh/andela-echigbo/enygma.svg?style=shield)](https://circleci.com/gh/andela-echigbo/enygma)
+# Enygma [![Coverage Status](https://coveralls.io/repos/andela-echigbo/enygma/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-echigbo/enygma?branch=master) [![Circle CI](https://circleci.com/gh/andela-echigbo/enygma.svg?style=shield)](https://circleci.com/gh/andela-echigbo/enygma) [![Code Climate](https://codeclimate.com/github/andela-echigbo/enygma/badges/gpa.svg)](https://codeclimate.com/github/andela-echigbo/enygma)
 
 Enygma is an encryption engine built (as a gem) with ruby programming language. It follows the principles of [Enigma Encryption Machine](https://en.wikipedia.org/wiki/Enigma_machine) to encrypt and decrypt files. The gem also offers the feature of cracking a file.
 
