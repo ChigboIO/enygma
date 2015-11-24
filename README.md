@@ -1,10 +1,10 @@
 # Enygma [![Coverage Status](https://coveralls.io/repos/andela-echigbo/enygma/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-echigbo/enygma?branch=master) [![Circle CI](https://circleci.com/gh/andela-echigbo/enygma.svg?style=shield)](https://circleci.com/gh/andela-echigbo/enygma)
 
-Enygma is an encryptor engine built (as a gem) with ruby programming language. It follows the principles of [Enigma Encryption Machine](https://en.wikipedia.org/wiki/Enigma_machine) to encrypt and decrypt files. The gem also offers the feature of crack a file.
+Enygma is an encryption engine built (as a gem) with ruby programming language. It follows the principles of [Enigma Encryption Machine](https://en.wikipedia.org/wiki/Enigma_machine) to encrypt and decrypt files. The gem also offers the feature of cracking a file.
 
 ## How the encryption works
 
-The encryption is based on rotation of letters using a key and the date of the encryption. The character map is made up of lower case alphabets (a - z), numbers(0 - 9), space character, comma, and period character.
+The encryption is based on rotation of letters using a key and the date of the encryption. The character map is made up of lower case alphabets (a - z), numbers(0 - 9), space character, comma, and period characters.
 
 ### The Key
 
@@ -48,13 +48,13 @@ This gem provides you with three command line actions, `encrypt`, `decrypt`, and
 
 When you have installed the enygma gem, you can encrypt a file by changing to the directory that contantains the file, and run any of the following commands
 
-### Encryption
+#### Encryption
     $ encrypt <filename> [<destination-filename>]
 
-### Decryption
+#### Decryption
     $ decrypt <cypher-filename> [<plain-filename>] <key> <date>
 
-### Cracking
+#### Cracking
     $crack <cypher-filename> [<plain-filename>] <date>
 
 ## Options
@@ -107,7 +107,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/andela
 6. Wait
 
 ## Limitations
-* The character set of this gem is limited. Lower case alphabets, numbers, space, comma and period characters.
+* The character set of this gem is limited; lower case alphabets, numbers, space, comma and period characters.
 * The application generates the the key for the encryption, and does not allow user to choose their prefered digit combinations
 
 ## Improvement
