@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Emmanuel Chigbo"]
   spec.email         = ["emmanuel.chigbo@andela.com"]
 
-  spec.summary       = "A file encryption gem"
-  spec.description   = "This gem uses Enigma algorithm to
- encrypt and decrypt a file. It also provides you
- with the ability to crack a file that was encrypted with 'enygma'"
+  spec.summary       = "A file encryption and decryption gem"
+  spec.description   = "This gem uses Enigma algorithm to encrypt and decrypt"\
+   "a file. It also provides you with the ability to crack a file that was"\
+   " encrypted with 'enygma'"
   spec.homepage      = "https://github.com/andela-echigbo/enygma"
   spec.license       = "MIT"
 

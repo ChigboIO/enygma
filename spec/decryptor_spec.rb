@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Enygma::Decryptor do
-  describe "#new" do
+  describe "#initialize" do
     context "when instantiating the Decryptor class" do
       context "when output file name is provided" do
         subject do
@@ -62,7 +62,7 @@ describe Enygma::Decryptor do
 
         it "should raise ArgumentError" do
           expect { Enygma::Encryptor.new("arg1", "arg2", "arg3") }.
-              to raise_error(ArgumentError)
+            to raise_error(ArgumentError)
         end
       end
     end
@@ -84,7 +84,7 @@ describe Enygma::Decryptor do
         it "should generate the plain file content of 'some default content'" do
           subject.decrypt
           expect(File.open("default_enc.decrypted.txt", 'r').read).
-              to eql("some default content")
+            to eql("some default content")
         end
       end
     end

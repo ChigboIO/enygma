@@ -2,29 +2,6 @@
 
 Enygma is an encryption engine built (as a gem) with ruby programming language. It follows the principles of [Enigma Encryption Machine](https://en.wikipedia.org/wiki/Enigma_machine) to encrypt and decrypt files. The gem also offers the feature of cracking a file.
 
-## How the encryption works
-
-The encryption is based on rotation of letters using a key and the date of the encryption. The character map is made up of lower case alphabets (a - z), numbers(0 - 9), space character, comma, and period characters.
-
-### The Key
-
-* Each message uses a unique encryption key
-* The key is five digits, like 41521
-* The first two digits of the key are the "A" rotation (41)
-* The second and third digits of the key are the "B" rotation (15)
-* The third and fourth digits of the key are the "C" rotation (52)
-* The fourth and fifth digits of the key are the "D" rotation (21)
-
-### The Offset
-
-* The date of message transmission is also factored into the encryption
-* Consider the date in the format DDMMYY, like 020315
-* Square the numeric form (412699225) and find the last four digits (9225)
-* The first digit is the "A offset" (9)
-* The second digit is the "B offset" (2)
-* The third digit is the "C offset" (2)
-* The fourth digit is the "D offset" (5)
-
 ## Installation
 
 To install as a gem and run as a termina/command line program, run the following command in you terminal(command promt for Windows)
@@ -55,7 +32,7 @@ When you have installed the enygma gem, you can encrypt a file by changing to th
     $ decrypt <cypher-filename> [<plain-filename>] <key> <date>
 
 #### Cracking
-    $crack <cypher-filename> [<plain-filename>] <date>
+    $ crack <cypher-filename> [<plain-filename>] <date>
 
 ## Options
 `<filename>`    The file path of the of the file you want to encrypt. This can be the absolute filepath if you are in a different directory.
@@ -92,7 +69,7 @@ To crack a file named `file.encrypted.txt`
 
     $ crack file.encrypted.txt 231190
 
-    =>#Created file.cracked.txt with key 12345 and date 231190
+    =>#Created file.decrypted.txt with key 12345 and date 231190
 
 
 ## Contributing

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Enygma::Encryptor do
-  describe "#new" do
+  describe "#initialize" do
     context "when instantiating the Encryptor class" do
       context "when output file name is provided" do
         subject do
@@ -64,7 +64,7 @@ describe Enygma::Encryptor do
       context "when THREE arguments are provided" do
         it "should NOT accept more than two parameters" do
           expect { Enygma::Encryptor.new("arg1", "arg2", "arg3") }.
-              to raise_error(ArgumentError)
+            to raise_error(ArgumentError)
         end
       end
     end
@@ -101,7 +101,6 @@ describe Enygma::Encryptor do
           File.delete("enc.txt")
         end
       end
-
     end
   end
 end

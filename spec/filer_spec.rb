@@ -45,21 +45,32 @@ describe Enygma do
 
           it "should have content 'some content'" do
             expect(File.open("file2.encrypted.txt", "r").read).
-                to eql("some content")
+              to eql("some content")
           end
         end
+
         context "when filename contains 'encrypted'" do
 
           it "should replace the 'encrypted' with the 'decrypted'" do
-            expect(Enygma::Filer.write(nil, "some content",
-                                       "file3.encrypted.txt", "decrypted"
-            )).to eql("file3.decrypted.txt")
+            expect(
+              Enygma::Filer.write(
+                nil,
+                "some content",
+                "file3.encrypted.txt",
+                "decrypted"
+              )
+            ).to eql("file3.decrypted.txt")
           end
 
           it "should replace the 'encrypted' with the 'cracked'" do
-            expect(Enygma::Filer.write(nil, "some content",
-                                       "file3.encrypted.txt", "cracked"
-            )).to eql("file3.cracked.txt")
+            expect(
+              Enygma::Filer.write(
+                nil,
+                "some content",
+                "file3.encrypted.txt",
+                "cracked"
+              )
+            ).to eql("file3.cracked.txt")
           end
         end
       end

@@ -5,12 +5,14 @@ module Enygma
       content.split('')
     end
 
+    # TODO: use options params instead
     def self.write(dest_file, content, source_file = '', action = '')
       unless dest_file
-        name_split_array = source_file.split('.')
-        name_split_array.delete("encrypted")
-        dest_file = name_split_array.insert(-2, action).join('.')
+        name_split = source_file.split('.')
+        name_split.delete("encrypted")
+        dest_file = name_split.insert(-2, action).join('.')
       end
+
       File.open(dest_file, "w") { |file| file.write(content) }
       dest_file
     end
