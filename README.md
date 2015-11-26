@@ -69,7 +69,7 @@ To crack a file named `file.encrypted.txt`
 
     $ crack file.encrypted.txt 231190
 
-    =>#Created file.decrypted.txt with key 12345 and date 231190
+    =>#Created file.cracked.txt with key 12345 and date 231190
 
 
 ## Contributing

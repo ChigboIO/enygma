@@ -6,10 +6,10 @@ module Enygma
       tracker = []
       differences.each_with_index do |value, index|
         break if index == differences.size - 1
-        value1 = value
-        value2 = differences[index + 1]
+        first_value = value
+        second_value = differences[index + 1]
 
-        compare(index, value1, value2, tracker, differences)
+        compare(index, first_value, second_value, tracker, differences)
       end
 
       "%d%d%d%d" % [
@@ -21,20 +21,20 @@ module Enygma
     end
 
     private
-    def self.compare(index, value1, value2, tracker, differences)
-      until value1.to_i >= 100 || tracker[index]
-        until value2.to_i >= 100 || tracker[index]
-          if value1[1] == value2[0]
-            differences[index] = value1
-            differences[index + 1] = value2
+    def self.compare(index, first_value, second_value, tracker, differences)
+      until first_value.to_i >= 100 || tracker[index]
+        until second_value.to_i >= 100 || tracker[index]
+          if first_value[1] == second_value[0]
+            differences[index] = first_value
+            differences[index + 1] = second_value
             tracker[index] = true
           else
-            value2 = (value2.to_i + Enygma::CHARACTER_MAP.size).to_s
+            second_value = (second_value.to_i + Enygma::CHARACTER_MAP.size).to_s
           end
         end
 
-        value2 = differences[index + 1]
-        value1 = (value1.to_i + Enygma::CHARACTER_MAP.size).to_s
+        second_value = differences[index + 1]
+        first_value = (first_value.to_i + Enygma::CHARACTER_MAP.size).to_s
       end
     end
   end

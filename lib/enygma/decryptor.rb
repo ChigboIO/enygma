@@ -24,7 +24,7 @@ module Enygma
       @decrypted = ""
     end
 
-    def decrypt
+    def decrypt(action = "decrypted")
       begin
         cypher_characters = Filer.read(@cypher_filename)
         cypher_characters.each_slice(4) { |batch| decrypt_batch(batch) }
@@ -32,7 +32,7 @@ module Enygma
           @plain_filename,
           @decrypted,
           @cypher_filename,
-          "decrypted"
+          action
         )
 
         show_confirmation_message(

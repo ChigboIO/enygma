@@ -5,8 +5,7 @@ module Enygma
       content.split('')
     end
 
-    # TODO: use options params instead
-    def self.write(dest_file, content, source_file = '', action = '')
+    def self.write(dest_file, content, source_file, action)
       unless dest_file
         name_split = source_file.split('.')
         name_split.delete("encrypted")

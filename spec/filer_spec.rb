@@ -5,7 +5,7 @@ describe Enygma do
     describe ".write" do
       context "when first parameter is not nil" do
         subject do
-          Enygma::Filer.write("file1.txt", "some content")
+          Enygma::Filer.write("file1.txt", "content", "out.txt", "encrypted")
         end
 
         before(:each) do
@@ -21,7 +21,7 @@ describe Enygma do
         end
 
         it "and the file should have content 'some content'" do
-          expect(File.open("file1.txt", "r").read).to eql("some content")
+          expect(File.open("file1.txt", "r").read).to eql("content")
         end
       end
 

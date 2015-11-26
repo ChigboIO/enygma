@@ -31,16 +31,16 @@ module Enygma
 
       key = KeyGen.get_key(differences)
       Decryptor.new(@cypher_filename, key, @encryption_date, @plain_filename).
-        decrypt
+        decrypt("cracked")
     end
 
-    def get_differences(cypher_array, plain_array, offset_array)
+    def get_differences(cypher_characters, plain_characters, offset_characters)
       differences = []
       4.times do |i|
-        diff = Enygma::CHARACTER_MAP.index(cypher_array[i]) -
-          Enygma::CHARACTER_MAP.index(plain_array[i])
+        diff = Enygma::CHARACTER_MAP.index(cypher_characters[i]) -
+          Enygma::CHARACTER_MAP.index(plain_characters[i])
 
-        diff -= offset_array[i].to_i
+        diff -= offset_characters[i].to_i
         differences[i] = diff.to_s.rjust(2, '0')
       end
 
