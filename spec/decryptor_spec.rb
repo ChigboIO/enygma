@@ -72,7 +72,7 @@ describe Enygma::Decryptor do
     context "when the #decrypt method is called" do
       context "when the output filename is not given" do
         subject do
-          Enygma::Decryptor.new("default_enc.txt", "57999", "201115")
+          Enygma::Decryptor.new("default_enc.txt", "42467", "261115")
         end
 
         it "should generate the plain filename from the cypher filename" do
