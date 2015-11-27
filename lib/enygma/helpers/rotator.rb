@@ -1,5 +1,3 @@
-require "enygma/mixins/character_mapper"
-
 module Enygma
   class Rotator
     def self.rotate(

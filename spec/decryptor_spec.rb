@@ -5,7 +5,7 @@ describe Enygma::Decryptor do
     context "when instantiating the Decryptor class" do
       context "when output file name is provided" do
         subject do
-          Enygma::Decryptor.new("encrypted.txt", "12345", "231190", "plain.txt")
+          Enygma::Decryptor.new("encrypted.txt", "plain.txt", "12345", "231190")
         end
 
         it "should NOT raise an error" do
@@ -61,7 +61,7 @@ describe Enygma::Decryptor do
       context "when FIVE arguments are provided" do
 
         it "should raise ArgumentError" do
-          expect { Enygma::Encryptor.new("arg1", "arg2", "arg3") }.
+          expect { Enygma::Encryptor.new("arg1", "arg2", "arg3", "arg4", "arg5") }.
             to raise_error(ArgumentError)
         end
       end
@@ -72,7 +72,7 @@ describe Enygma::Decryptor do
     context "when the #decrypt method is called" do
       context "when the output filename is not given" do
         subject do
-          Enygma::Decryptor.new("default_enc.txt", "42467", "261115")
+          Enygma::Decryptor.new("default_enc.txt", "96545", "271115")
         end
 
         it "should generate the plain filename from the cypher filename" do
@@ -81,10 +81,10 @@ describe Enygma::Decryptor do
           File.delete("default_enc.decrypted.txt")
         end
 
-        it "should generate the plain file content of 'some default content'" do
+        it "should generate the plain file content of 'some default content ..end..'" do
           subject.decrypt
           expect(File.open("default_enc.decrypted.txt", 'r').read).
-            to eql("some default content")
+            to eql("some default content ..end..")
         end
       end
     end

@@ -1,19 +1,14 @@
-require 'enygma/decryptor'
-require 'enygma/helpers/filer'
-require 'enygma/helpers/key_gen'
-require 'enygma/helpers/offset'
-require 'enygma/mixins/character_mapper'
-
 module Enygma
   class Cracker
     PLAIN_LAST_7_CHARACTERS = "..end.."
+    attr_reader :plain_filename, :cypher_filename, :encryption_date, :key
 
-    def initialize(cypher_filename, encryption_date, plain_filename = nil)
+    def initialize(cypher_filename, plain_filename = nil, encryption_date)
       @cypher_filename = cypher_filename
       @plain_filename = plain_filename
+      @key = nil
       @encryption_date = encryption_date
       @offset = Offset.get_offset(@encryption_date)
-      @decrypted = ""
     end
 
     def crack
@@ -29,8 +24,8 @@ module Enygma
         offset_characters
       )
 
-      key = KeyGen.get_key(differences)
-      Decryptor.new(@cypher_filename, key, @encryption_date, @plain_filename).
+      @key = KeyGen.get_key(differences)
+      Decryptor.new(@cypher_filename, @plain_filename, @key, @encryption_date).
         decrypt("cracked")
     end
 

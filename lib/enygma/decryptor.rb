@@ -1,9 +1,3 @@
-require 'enygma/helpers/filer'
-require 'enygma/helpers/offset'
-require 'enygma/helpers/rotator'
-require 'enygma/mixins/character_mapper'
-require 'enygma/mixins/confirmation'
-
 module Enygma
   class Decryptor
     include Confirmation
@@ -12,9 +6,9 @@ module Enygma
 
     def initialize(
       cypher_filename,
+      plain_filename = nil,
       encryption_key,
-      encryption_date,
-      plain_filename = nil
+      encryption_date
     )
       @cypher_filename = cypher_filename
       @plain_filename = plain_filename

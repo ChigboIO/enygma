@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'enygma/encryptor'
-require 'enygma/helpers/help'
+require 'enygma'
 
 if ARGV[0] && (ARGV[0] == 'help' || ARGV[0] == '--help' || ARGV[0] == '-h')
   Enygma::Help.encrypt

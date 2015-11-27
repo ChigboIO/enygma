@@ -1,9 +1,3 @@
-require 'enygma/helpers/filer'
-require 'enygma/helpers/offset'
-require 'enygma/helpers/rotator'
-require 'enygma/mixins/character_mapper'
-require 'enygma/mixins/confirmation'
-
 module Enygma
   class Encryptor
     include Confirmation

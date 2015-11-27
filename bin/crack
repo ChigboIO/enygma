@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'enygma/cracker'
-require 'enygma/helpers/help'
+require 'enygma'
 
 if ARGV[0] && (ARGV[0] == 'help' || ARGV[0] == '--help' || ARGV[0] == '-h')
   Enygma::Help.crack
@@ -13,7 +12,7 @@ elsif ARGV.length == 3 && File.file?(ARGV[1])
   puts "The output file path cannot be created, or file already exist. Run with --help for explanation"
 else
   if ARGV.length == 3
-    Enygma::Cracker.new(ARGV[0], ARGV[2], ARGV[1]).crack
+    Enygma::Cracker.new(ARGV[0], ARGV[1], ARGV[2]).crack
   else
     Enygma::Cracker.new(ARGV[0], ARGV[1]).crack
   end

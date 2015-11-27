@@ -1,5 +1,3 @@
-require "enygma/mixins/character_mapper"
-
 module Enygma
   class KeyGen
     def self.get_key(differences)
