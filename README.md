@@ -8,6 +8,11 @@ To install as a gem and run as a termina/command line program, run the following
 
     $ gem install enygma
 
+If you are on Mac, you might have to run the following after installation to be able to run the console commands:
+
+    $ rbenv rehash
+
+
 If you want to use 'Enygma' in your ruby application, add this line to your application's Gemfile:
 
 ```ruby
